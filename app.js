@@ -29,6 +29,8 @@ const Task = mongoose.model("tasks", taskSchema);
 // Создание роута, который по / выдаст сообщение
 // В приложении app анализируем запрос (get,patch,delete и т. д.). В данном случае анализируем запрос get.
 // Через приложение Postman отправляем запрос на get (получение данных). Если данные получили, записываем их в БД
+// req (request) - то, что приходит с клиента. Запрос с клиента
+// res (response) - ответ, который отправляю на клиент
 app.get("/", (req, res) => {
 	const task = new Task({
 		text: "First task",
@@ -38,7 +40,8 @@ app.get("/", (req, res) => {
 	task
 		.save() // - Сохранить новый экземпляр коллекции - .save(). Далее применяем метод .then, чтобы узнать результат сохранения
 		.then((value) => {
-			res.send(value); // - Возвращает параметры в БД (и отправляет обратно в Postman по API запросу)
+			console.log(value);
+			res.send(value); // - Возвращает параметры в БД или клиент (и отправляет обратно в Postman по API запросу)
 		})
 		.catch((err) => console.log(err));
 });
@@ -47,6 +50,10 @@ app.get("/paramRequest", (req, res) => {
 	Task.find().then((result) => {
 		res.send({ data: result });
 	});
+});
+
+app.post("/check", (req, res) => {
+	console.log(req.params);
 });
 
 /**
