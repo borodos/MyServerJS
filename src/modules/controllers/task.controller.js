@@ -1,4 +1,4 @@
-const Task = require("../DataBase/models/task/index");
+const Task = require("../../DataBase/models/task/index");
 
 module.exports.getAllTasks = (req, res, next) => {
 	Task.find().then((result) => {
