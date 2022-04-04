@@ -9,7 +9,7 @@ module.exports.getAllTasks = (req, res, next) => {
 module.exports.createNewTask = (req, res, next) => {
 	const task = new Task(req.body);
 	task.save().then((result) => {
-		res.send("Task created");
+		res.send(result);
 	});
 };
 

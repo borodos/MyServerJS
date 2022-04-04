@@ -13,4 +13,5 @@ router.post("/createTask", createNewTask);
 router.get("/updateTask", changeTaskInfo);
 router.get("/deleteTask", deleteTask);
 
-module.exports = router;
+// - Чтобы получить доступ к функционалу модуля, нужно его экспортировать
+module.exports = router; // - Экспорт объекта напрямую (экспорт контейнера - module.exports.container = router)
